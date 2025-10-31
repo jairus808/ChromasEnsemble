@@ -1,12 +1,7 @@
 'use client';
 
 import { useState } from "react";
-
-const stats = [
-  { label: "Musicians", value: "65" },
-  { label: "Productions per year", value: "8" },
-  { label: "World premieres in the upcoming season", value: "3" },
-];
+import { SiteHeader } from "./SiteHeader";
 
 const seasonPrograms = [
   {
@@ -15,6 +10,30 @@ const seasonPrograms = [
     description:
       "Chromas Ensemble opens its first season with music that bridges past and present: Mozart’s Haffner Symphony alongside Stravinsky’s Pulcinella Suite and Prokofiev’s Classical Symphony. ",
   }
+];
+
+const latestNews = [
+  {
+    eyebrow: "Call for Musicians",
+    title: "Sectional Strings & Winds",
+    date: "November 2025",
+    description:
+      "Audition to join our winter repertoire lab. We’re especially seeking violin II, viola, horn, and bassoon players ready to experiment with multimedia collaboration.",
+  },
+  {
+    eyebrow: "Latest",
+    title: "Composer salon announced",
+    date: "October 2025",
+    description:
+      "Our first composer salon pairs emerging writers with visual artists to explore synesthetic storytelling. RSVP for the December 8 studio showcase.",
+  },
+  {
+    eyebrow: "Support",
+    title: "Patron circle preview",
+    date: "September 2025",
+    description:
+      "We’re hosting an intimate rehearsal preview for patrons and partners. Learn about commissioning opportunities and our 2026 expansion plans.",
+  },
 ];
 
 type ModalVariant = "patron" | "preview" | "listening" | null;
@@ -65,48 +84,44 @@ export function MainLanding() {
 
   return (
     <>
-      <header className="site-header">
-        <div className="container">
-          <div className="brand">
-            <span className="brand-mark">Chromas</span>
-            <span className="brand-sub">Ensemble</span>
-          </div>
-          <nav className="site-nav">
-            <a href="#about">About</a>
-            <a href="#season">Season</a>
-            <a href="#listen">Listen</a>
-            <a href="#connect">Connect</a>
-          </nav>
-        </div>
-      </header>
-
+      <SiteHeader />
       <main>
+
+        {/* home section */}
         <section className="hero" id="home">
+          <div className="hero-overlay" />
           <div className="container hero-content">
             <div className="hero-text">
-              <p className="eyebrow"> Join us in our premier concert on November 16th! </p>
-              <h1>Experience the resonance of color and sound.</h1>
-              <p className="lede">
-                Chromas Ensemble reimagines the modern orchestra
+              <h1 className="hero-title">Chromas Ensemble</h1>
+              <p className="hero-tagline">
+                Synesthetic performances that blend sight, sound, and storytelling.
               </p>
-              <div className="cta-group">
-                <a className="btn primary" href="#season">
-                  Explore the Season
-                </a>
-                <button
-                  type="button"
-                  className="btn ghost"
-                  onClick={() => setActiveModal("preview")}
-                >
-                  Preview a Performance
-                </button>
-              </div>
             </div>
-            <div className="hero-visual" aria-hidden="true">
-              <div className="orb orb-sun" />
-              <div className="orb orb-blue" />
-              <div className="stroke stroke-one" />
-              <div className="stroke stroke-two" />
+          </div>
+        </section>
+
+        <section id="season" className="section season">
+          <div className="container">
+            <h2>Season &amp; Events</h2>
+            <p className="lede">2025-2026 Season: Our Premier Concert! Join us at DiMenna on November 16th for a night
+              of music and community.
+            </p>
+            <div className="season-grid">
+              {seasonPrograms.map((program, index) => (
+                <article
+                  className={`season-card${index === 0 ? " featured" : ""}`}
+                  key={program.title}
+                >
+                  <h3>{program.title}</h3>
+                  <p className="details">{program.details}</p>
+                  <p>{program.description}</p>
+                </article>
+              ))}
+            </div>
+            <div className="season-cta">
+              <a className="btn primary" href="/season-events">
+                View full season details
+              </a>
             </div>
           </div>
         </section>
@@ -119,7 +134,8 @@ export function MainLanding() {
                 Founded in September 2025, the Chromas Ensemble is a student-led, volunteer-based orchestra dedicated to creating large-scale, collaborative performances that bring together musicians and artists across disciplines. Our mission is to provide a space for free-form, organic music-making where students and emerging artists can experiment, perform major works often beyond the reach of student groups, and share in the joy of music as a communal experience.
               </p>
               <p>
-                With a vision to collaborate with artists, students, and multi-media projects, we aim to be experimental. 
+                With a vision to collaborate with artists, students, and multi-media projects, we aim to set ourselves apart
+                through exploring the ways music can be experienced. 
               </p>
             </div>
             {/* <div className="highlight-card">
@@ -136,25 +152,29 @@ export function MainLanding() {
           </div>
         </section>
 
-        <section id="season" className="section season">
+        <section id="news" className="section latest">
           <div className="container">
-            <h2>2025-2026 Season: Impression in Motion</h2>
-            <div className="season-grid">
-              {seasonPrograms.map((program) => (
-                <article className="season-card" key={program.title}>
-                  <h3>{program.title}</h3>
-                  <p className="details">{program.details}</p>
-                  <p>{program.description}</p>
+            <div className="latest-header">
+              <p className="latest-eyebrow">Latest News &amp; Calls</p>
+              <h2>Keep pace with Chromas</h2>
+            </div>
+            <div className="latest-grid">
+              {latestNews.map((item) => (
+                <article className="latest-card" key={item.title}>
+                  <p className="latest-card-eyebrow">{item.eyebrow}</p>
+                  <h3>{item.title}</h3>
+                  <p className="latest-card-date">{item.date}</p>
+                  <p>{item.description}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
-
-        <section id="listen" className="section listen">
+{/* 
+        <section id="media" className="section media">
           <div className="container split">
             <div>
-              <h2>Preview the palette</h2>
+              <h2>Media</h2>
               <p>
                 Dive into selections from our archives and upcoming collaborations. Each track is paired with visual art and filmmaker responses to the music.
               </p>
@@ -175,12 +195,12 @@ export function MainLanding() {
               </div>
             </div>
           </div>
-        </section>
-
-        <section id="connect" className="section connect">
+        </section> */}
+{/* 
+        <section id="join" className="section join">
           <div className="container split">
             <div>
-              <h2>Join the Chromas circle</h2>
+              <h2>Join / Musicians</h2>
               <p>
                 Subscribe for behind-the-scenes sessions, artist conversations, and early access to tickets across the season.
               </p>
@@ -194,33 +214,116 @@ export function MainLanding() {
                 </a>
               </div>
             </div>
-            <div className="support-card">
-              <h3>Support the ensemble</h3>
+            <div className="highlight-card">
+              <h3>For Musicians</h3>
               <p>
-                Help us commission new works and bring our visions for collaboration to communities across the region.
+                We welcome performers, composers, and collaborators across disciplines. Share your background and availability, and we&apos;ll reach out about upcoming sessions.
+              </p>
+              <a className="btn ghost" href="mailto:chromasensemble@gmail.com?subject=Join%20Chromas%20Ensemble">
+                Introduce Yourself
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="support" className="section support">
+          <div className="container split">
+            <div>
+              <h2>Support</h2>
+              <p>
+                Help us bring our visions for collaboration to communities across the region.
+              </p>
+              <p>
+                
+              </p>
+            </div>
+            <div className="support-card">
+              <h3>Become a Patron</h3>
+              <p>
+                Ready to uplift the ensemble? Reach out and we&apos;ll tailor a giving opportunity that resonates with your goals.
               </p>
               <button
                 type="button"
                 className="btn ghost"
                 onClick={() => setActiveModal("patron")}
               >
-                Become a Patron
+                Start the Conversation
               </button>
             </div>
           </div>
         </section>
+
+        <section id="contact" className="section contact">
+          <div className="container split">
+            <div>
+              <h2>Contact</h2>
+              <p>
+                We&apos;d love to hear from you. Reach out with inquiries about collaborations, performances, or media.
+              </p>
+              <a className="btn secondary" href="mailto:chromasensemble@gmail.com">
+                Email chromasensemble@gmail.com
+              </a>
+            </div>
+            <div>
+              <h3>Connect with us</h3>
+              <p>Follow along for rehearsal clips, premieres, and announcements.</p>
+              <a
+                className="btn ghost"
+                href="https://www.instagram.com/chromasensemble?igsh=bnphczJkcXRuYXB2&utm_source=qr"
+              >
+                Instagram
+              </a>
+            </div>
+          </div>
+        </section> */}
       </main>
 
-      <footer className="site-footer">
-        <div className="container">
-          <p>
-            &copy; {new Date().getFullYear()} Chromas Ensemble. Crafted in homage to Kandinsky&apos;s Impressions III.
-          </p>
-          <div className="footer-links">
-            <a href="https://www.instagram.com/chromasensemble?igsh=bnphczJkcXRuYXB2&utm_source=qr">Instagram</a>
-     
-      
+      <footer className="site-footer" id="footer">
+        <div className="container footer-grid">
+          <div className="footer-brand">
+            <p className="footer-eyebrow">Stay in touch</p>
+            <p className="footer-copy">
+              Subscribe for Chromas news, rehearsal invites, and multimedia calls for collaborators.
+            </p>
+            <a
+              className="footer-link primary"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdzSFglaURsQXBVOI2JCaEqoTUpIO1ih5a0viYpbsggml5rzA/viewform?usp=publish-editor"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Join the newsletter
+            </a>
           </div>
+          <div className="footer-column">
+            <p className="footer-eyebrow">Connect</p>
+            <a
+              className="footer-link"
+              href="https://www.instagram.com/chromasensemble?igsh=bnphczJkcXRuYXB2&utm_source=qr"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Instagram
+            </a>
+            <a className="footer-link" href="mailto:chromasensemble@gmail.com">
+              chromasensemble@gmail.com
+            </a>
+          </div>
+          <div className="footer-column">
+            <p className="footer-eyebrow">Support</p>
+            <button
+              type="button"
+              className="footer-link ghost"
+              onClick={() => setActiveModal("patron")}
+            >
+              Become a donor
+            </button>
+            <a className="footer-link" href="mailto:chromasensemble@gmail.com?subject=Donor%20Inquiry">
+              Email our team
+            </a>
+          </div>
+        </div>
+        <div className="container footer-meta">
+          <p>&copy; {new Date().getFullYear()} Chromas Ensemble. Website by Jairus Rhoades.</p>
         </div>
       </footer>
       {modalContent && (
