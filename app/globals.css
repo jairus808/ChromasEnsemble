@@ -405,7 +405,7 @@ a:hover {
   padding: clamp(64px, 12vh, 120px) 0 clamp(72px, 10vh, 140px);
   min-height: clamp(520px, 80vh, 860px);
   color: #fff;
-  background-image: linear-gradient(135deg, rgba(10, 12, 22, 0.7), rgba(10, 12, 22, 0.4)), url("/images/Paul_more.png");
+  background-image: linear-gradient(135deg, rgba(10, 12, 22, 0.7), rgba(10, 12, 22, 0.4)), url("/images/Paul_more.jpeg");
   background-size: cover;
   background-position: center;
 }

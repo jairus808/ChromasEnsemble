@@ -5,7 +5,7 @@ const upcomingConcert = {
   title: "Overtures across times",
   date: "November 16, 2025 · 7:30 PM",
   venue: "DiMenna Center for Classical Music, New York",
-  photo: "/images/Kaleb_event.png",
+  photo: "/images/Kaleb_event.jpeg",
   summary:
     "Our inaugural concert traces musical color across eras. Conductor Kaleb Zhu leads Mozart’s Haffner Symphony, Stravinsky’s Pulcinella Suite, and Prokofiev’s Classical Symphony in a synesthetic program with projected visuals.",
   programNote:
