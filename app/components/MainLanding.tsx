@@ -14,25 +14,11 @@ const seasonPrograms = [
 
 const latestNews = [
   {
-    eyebrow: "Call for Musicians",
-    title: "Sectional Strings & Winds",
-    date: "November 2025",
+    eyebrow: "Premier Concert",
+    title: "Overtures across times",
+    date: "Sunday, November 16 · 7:30 PM · DiMenna Center",
     description:
-      "Audition to join our winter repertoire lab. We’re especially seeking violin II, viola, horn, and bassoon players ready to experiment with multimedia collaboration.",
-  },
-  {
-    eyebrow: "Latest",
-    title: "Composer salon announced",
-    date: "October 2025",
-    description:
-      "Our first composer salon pairs emerging writers with visual artists to explore synesthetic storytelling. RSVP for the December 8 studio showcase.",
-  },
-  {
-    eyebrow: "Support",
-    title: "Patron circle preview",
-    date: "September 2025",
-    description:
-      "We’re hosting an intimate rehearsal preview for patrons and partners. Learn about commissioning opportunities and our 2026 expansion plans.",
+      "Join us for our first concert featuring students and alumni of Juilliard, MSM, and Yale. Kaleb Zhu conducts Stravinsky’s Pulcinella Suite, Prokofiev’s Classical Symphony, and Mozart’s Haffner Symphony.",
   },
 ];
 
@@ -94,7 +80,7 @@ export function MainLanding() {
             <div className="hero-text">
               <h1 className="hero-title">Chromas Ensemble</h1>
               <p className="hero-tagline">
-                Synesthetic performances that blend sight, sound, and storytelling.
+                A student-led, volunteer orchestra exploring intersectional performance.
               </p>
             </div>
           </div>

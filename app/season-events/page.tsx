@@ -7,7 +7,7 @@ const upcomingConcert = {
   venue: "DiMenna Center for Classical Music, New York",
   photo: "/images/Kaleb_event.jpeg",
   summary:
-    "Our inaugural concert traces musical color across eras. Conductor Kaleb Zhu leads Mozart’s Haffner Symphony, Stravinsky’s Pulcinella Suite, and Prokofiev’s Classical Symphony in a synesthetic program with projected visuals.",
+    "Our inaugural concert traces musical color across eras. Conductor Kaleb Zhu leads Mozart’s Haffner Symphony, Stravinsky’s Pulcinella Suite, and Prokofiev’s Classical Symphony.",
   programNote:
     "We aim to make our mark with a small step that will hint at our big visions to feature interdisciplinary performances. ",
   issuuEmbed:

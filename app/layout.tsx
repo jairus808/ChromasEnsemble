@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   title: "Chromas Ensemble | A student-led, volunteer-based orchestral ensemble",
   description:
     "Support and join us for our first concert on November 16th at Dimenna Center for Classical Music!",
+  icons: {
+    icon: "/images/logo_transparent.png",
+    shortcut: "/images/logo_transparent.png",
+    apple: "/images/logo_transparent.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
