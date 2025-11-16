@@ -5,18 +5,19 @@ import { SiteHeader } from "./SiteHeader";
 
 const seasonPrograms = [
   {
-    title: "Overtures across times",
-    details: "November 16 · DiMenna Center for Classical Music",
+    title: "Joyful Reflections",
+    details: "November 16 · Cary Hall, DiMenna Center for Classical Music",
     description:
-      "Chromas Ensemble opens its first season with music that bridges past and present: Mozart’s Haffner Symphony alongside Stravinsky’s Pulcinella Suite and Prokofiev’s Classical Symphony. ",
-  }
+      "Chromas Ensemble opens its first season with music that bridges past and present: Mozart’s Haffner Symphony alongside Stravinsky’s Pulcinella Suite and Prokofiev’s Classical Symphony.",
+    livestreamUrl: "https://www.youtube.com/watch?v=Iz9o3q14yvI",
+  },
 ];
 
 const latestNews = [
   {
     eyebrow: "Premier Concert",
     title: "Overtures across times",
-    date: "Sunday, November 16 · 7:30 PM · DiMenna Center",
+    date: "Sunday, November 16 · 7:30 PM · Cary Hall, DiMenna Center",
     description:
       "Join us for our first concert featuring students and alumni of Juilliard, MSM, and Yale. Kaleb Zhu conducts Stravinsky’s Pulcinella Suite, Prokofiev’s Classical Symphony, and Mozart’s Haffner Symphony.",
   },
@@ -80,7 +81,8 @@ export function MainLanding() {
             <div className="hero-text">
               <h1 className="hero-title">Chromas Ensemble</h1>
               <p className="hero-tagline">
-                A student-led, volunteer orchestra exploring intersectional performance.
+                A student-led, volunteer orchestra exploring intersectional performance. Concert today, November 16th, 2025 at Cary Hall, DiMenna Center.
+                See below for details and live-streaming. 
               </p>
             </div>
           </div>
@@ -89,8 +91,9 @@ export function MainLanding() {
         <section id="season" className="section season">
           <div className="container">
             <h2>Season &amp; Events</h2>
-            <p className="lede">2025-2026 Season: Our Premier Concert! Join us at DiMenna on November 16th for a night
-              of music and community.
+            <p className="lede">
+              2025-2026 Season: Our Premier Concert! Join us at Cary Hall inside the DiMenna Center on November 16th for a
+              night of music and community.
             </p>
             <div className="season-grid">
               {seasonPrograms.map((program, index) => (
@@ -101,6 +104,18 @@ export function MainLanding() {
                   <h3>{program.title}</h3>
                   <p className="details">{program.details}</p>
                   <p>{program.description}</p>
+                  {program.livestreamUrl && (
+                    <div className="season-card-actions">
+                      <a
+                        className="btn secondary"
+                        href={program.livestreamUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Livestream
+                      </a>
+                    </div>
+                  )}
                 </article>
               ))}
             </div>

@@ -817,14 +817,13 @@ a:hover {
 
 .events-program-embed {
   display: grid;
-  gap: 14px;
+  gap: 10px;
 }
 
 .events-program-embed iframe {
   width: 100%;
-  min-height: clamp(320px, 50vw, 520px);
   border: none;
-  border-radius: 28px;
+  border-radius: 10px;
   box-shadow: 0 28px 52px rgba(17, 16, 23, 0.14);
   background: #0d0f1a;
 }
