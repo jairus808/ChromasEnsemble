@@ -87,7 +87,7 @@ export function SiteHeader() {
         <div className="container">
           <div className={`brand emblem${showWordmark ? " hidden" : " visible"}`}>
             <Image
-              src="/images/logo_transparent.png"
+              src="/images/better_logo_transparent.png"
               alt="Chromas Ensemble emblem"
               width={64}
               height={64}

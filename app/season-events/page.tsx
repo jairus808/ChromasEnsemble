@@ -15,10 +15,10 @@ type ConcertInfo = {
 };
 
 const upcomingConcert: ConcertInfo = {
-  title: "Overtures across times",
+  title: "Joyful Reflections",
   date: "November 16, 2025 · 7:30 PM",
-  venue: "DiMenna Center for Classical Music, New York",
-  photo: "/images/Kaleb_event.jpeg",
+  venue: "Cary Hall at the DiMenna Center for Classical Music, New York",
+  photo: "/images/Chromas_group.png",
   summary:
     "Our inaugural concert traces musical color across eras. Conductor Kaleb Zhu leads Mozart’s Haffner Symphony, Stravinsky’s Pulcinella Suite, and Prokofiev’s Classical Symphony.",
   programNote:
@@ -38,7 +38,7 @@ export default function SeasonEventsPage() {
         <section className="events-hero">
           <div className="container events-hero-inner">
             <div className="events-hero-copy">
-              <p className="events-eyebrow">Upcoming Concert</p>
+              <p className="events-eyebrow">Upcoming Concert: Today!</p>
               <h1>{upcomingConcert.title}</h1>
               <p className="events-meta">{upcomingConcert.date}</p>
               <p className="events-meta">{upcomingConcert.venue}</p>

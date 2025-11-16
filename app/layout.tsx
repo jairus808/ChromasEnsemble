@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   description:
     "Support and join us for our first concert on November 16th at Dimenna Center for Classical Music!",
   icons: {
-    icon: "/images/logo_transparent.png",
-    shortcut: "/images/logo_transparent.png",
-    apple: "/images/logo_transparent.png",
+    icon: "/images/better_logo_transparent.png",
+    shortcut: "/images/better_logo_transparent.png",
+    apple: "/images/better_logo_transparent.png",
   },
 };
 
