@@ -11,12 +11,25 @@ const seasonPrograms = [
       "Chromas Ensemble opens its first season with music that bridges past and present: Mozart’s Haffner Symphony alongside Stravinsky’s Pulcinella Suite and Prokofiev’s Classical Symphony.",
     livestreamUrl: "https://www.youtube.com/watch?v=Iz9o3q14yvI",
   },
+  {
+    title: "Chromas: Visualizing Temporal Expressivity",
+    details: "Thursday, April 23rd, 2026 · AFAM House, Enormous Room, Yale University",
+    description:
+      "Chromas heads to Yale premiering visuals that interact with live-time temporal expressivity.",
+  },
 ];
 
 const latestNews = [
+   {
+    eyebrow: "Chromas' first multimedia endeavors take place at Yale",
+    title: "Chromas: Visualizing Temporal Expressivity",
+    date: "Thursday, April 23rd · 5:00 PM · Enormous Room, AFAM House, Yale University",
+    description:
+      "In collaboration with a senior thesis considering how to visualize temporal expressivity by Jairus Rhoades, Lucas Amory conducts a Chromas chamber ensemble featuring a program of Glass, Dvorak, and Britten.",
+  },
   {
     eyebrow: "Premier Concert",
-    title: "Overtures across times",
+    title: "Joyful Reflections",
     date: "Sunday, November 16 · 7:30 PM · Cary Hall, DiMenna Center",
     description:
       "Join us for our first concert featuring students and alumni of Juilliard, MSM, and Yale. Kaleb Zhu conducts Stravinsky’s Pulcinella Suite, Prokofiev’s Classical Symphony, and Mozart’s Haffner Symphony.",
@@ -81,8 +94,7 @@ export function MainLanding() {
             <div className="hero-text">
               <h1 className="hero-title">Chromas Ensemble</h1>
               <p className="hero-tagline">
-                A student-led, volunteer orchestra exploring intersectional performance. Concert today, November 16th, 2025 at Cary Hall, DiMenna Center.
-                See below for details and live-streaming. 
+                A student-led, volunteer orchestra exploring intersectional performance. 
               </p>
             </div>
           </div>
@@ -98,7 +110,7 @@ export function MainLanding() {
             <div className="season-grid">
               {seasonPrograms.map((program, index) => (
                 <article
-                  className={`season-card${index === 0 ? " featured" : ""}`}
+                  className={`season-card${index === 0 ? " featured" : index === 1 ? " secondary" : ""}`}
                   key={program.title}
                 >
                   <h3>{program.title}</h3>
@@ -306,7 +318,7 @@ export function MainLanding() {
               Instagram
             </a>
             <a className="footer-link" href="mailto:chromasensemble@gmail.com">
-              chromasensemble@gmail.com
+              Email us
             </a>
           </div>
           <div className="footer-column">

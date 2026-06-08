@@ -405,7 +405,7 @@ a:hover {
   padding: clamp(64px, 12vh, 120px) 0 clamp(72px, 10vh, 140px);
   min-height: clamp(520px, 80vh, 860px);
   color: #fff;
-  background-image: linear-gradient(135deg, rgba(10, 12, 22, 0.7), rgba(10, 12, 22, 0.4)), url("/images/Paul_more.jpeg");
+  background-image: linear-gradient(135deg, rgba(10, 12, 22, 0.7), rgba(10, 12, 22, 0.4)), url("/images/_DSC7428.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -615,9 +615,44 @@ a:hover {
   filter: saturate(1.05);
 }
 
-.season-card.featured > * {
+.season-card.featured > *,
+.season-card.secondary > * {
   position: relative;
   z-index: 1;
+}
+
+.season-card.secondary {
+  position: relative;
+  overflow: hidden;
+  padding: 32px;
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 32px 48px rgba(10, 12, 22, 0.45);
+  background: none;
+}
+
+.season-card.secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(155deg, rgba(8, 10, 18, 0.72), rgba(30, 20, 10, 0.68), rgba(60, 40, 20, 0.6)),
+    url("/images/_DSC7428.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.season-card.secondary h3 {
+  font-family: var(--font-heading, var(--font-grotesk));
+  font-size: clamp(1.6rem, 3vw, 2rem);
+}
+
+.season-card.secondary .details {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.season-card.secondary p {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .season-card.featured h3 {
@@ -1177,5 +1212,199 @@ a:hover {
   }
   to {
     transform: translateX(0);
+  }
+}
+
+/* ── Season page ─────────────────────────────────────── */
+
+.season-page-header {
+  padding: clamp(120px, 20vh, 180px) 0 clamp(56px, 9vh, 96px);
+  background: linear-gradient(160deg, #0d0f1a 0%, #1a2035 100%);
+  color: #fff;
+  text-align: center;
+}
+
+.season-page-eyebrow {
+  margin: 0 0 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.42em;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.season-page-header h1 {
+  font-family: var(--font-heading, var(--font-grotesk));
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  margin: 0 0 18px;
+  letter-spacing: 0.04em;
+}
+
+.season-page-sub {
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.52);
+  letter-spacing: 0.06em;
+}
+
+/* ── Concert entry rows ───────────────────────────────── */
+
+.concerts-list {
+  background: #f4f1ea;
+}
+
+.concert-entry {
+  padding: clamp(64px, 11vh, 108px) 0;
+  border-bottom: 1px solid rgba(28, 28, 35, 0.08);
+}
+
+.concert-entry.past {
+  background: rgba(28, 28, 35, 0.03);
+}
+
+.concert-entry.upcoming {
+  background: rgba(240, 201, 61, 0.05);
+}
+
+.concert-entry-inner {
+  display: grid;
+  gap: clamp(36px, 7vw, 80px);
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+}
+
+.concert-entry.flipped .concert-entry-body {
+  order: 2;
+}
+
+.concert-entry.flipped .concert-entry-visual {
+  order: 1;
+}
+
+.concert-badge {
+  display: inline-block;
+  padding: 5px 16px;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.concert-badge.past {
+  background: rgba(63, 74, 90, 0.1);
+  color: var(--color-slate);
+}
+
+.concert-badge.upcoming {
+  background: rgba(216, 89, 63, 0.1);
+  color: var(--color-ember);
+}
+
+.concert-entry-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.concert-entry-body h2 {
+  font-family: var(--font-heading, var(--font-grotesk));
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.concert-date {
+  margin: 0;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  color: var(--color-lagoon);
+}
+
+.concert-venue {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--color-slate);
+}
+
+.concert-summary {
+  margin: 0;
+  line-height: 1.75;
+  color: var(--color-slate);
+  max-width: 480px;
+}
+
+.concert-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.concert-entry-visual {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 40px 72px rgba(10, 12, 22, 0.16);
+  aspect-ratio: 4 / 3;
+}
+
+.concert-entry.past .concert-entry-visual {
+  filter: saturate(0.55) brightness(0.96);
+}
+
+.concert-entry-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Per-concert program section ─────────────────────── */
+
+.concert-program {
+  margin-top: clamp(48px, 8vh, 80px);
+  padding-top: clamp(36px, 6vh, 60px);
+  border-top: 1px solid rgba(28, 28, 35, 0.1);
+}
+
+.concert-program-inner {
+  display: grid;
+  gap: clamp(32px, 6vw, 56px);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: start;
+}
+
+.concert-program-note {
+  background: #fff;
+  padding: clamp(28px, 5vw, 40px);
+  border-radius: 28px;
+  box-shadow: 0 24px 48px rgba(17, 16, 23, 0.08);
+  display: grid;
+  gap: 18px;
+}
+
+.concert-program-note h3 {
+  margin: 0;
+  font-family: var(--font-heading, var(--font-grotesk));
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+}
+
+.concert-program-note p {
+  margin: 0;
+  color: var(--color-slate);
+  line-height: 1.7;
+}
+
+@media (max-width: 720px) {
+  .concert-entry-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .concert-entry.flipped .concert-entry-body {
+    order: 2;
+  }
+
+  .concert-entry.flipped .concert-entry-visual {
+    order: 1;
   }
 }
