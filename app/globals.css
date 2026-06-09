@@ -402,10 +402,10 @@ a:hover {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: clamp(64px, 12vh, 120px) 0 clamp(72px, 10vh, 140px);
+  padding: clamp(20px, 3vh, 32px) 0 clamp(72px, 10vh, 150px);
   min-height: clamp(520px, 80vh, 860px);
   color: #fff;
-  background-image: linear-gradient(135deg, rgba(10, 12, 22, 0.7), rgba(10, 12, 22, 0.4)), url("/images/_DSC7428.jpg");
+  background-image: linear-gradient(135deg, rgba(10, 12, 22, 0.7), rgba(10, 12, 22, 0.4)), url("/images/trydis.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -607,8 +607,9 @@ a:hover {
   content: "";
   position: absolute;
   inset: 0;
+  padding: (128px, 60px, 30px);
   background: linear-gradient(155deg, rgba(8, 10, 18, 0.68), rgba(24, 40, 68, 0.72), rgba(48, 86, 132, 0.64)),
-    url("/images/kaleb_conducting.png");
+    url("/images/Chromas_Hero.jpeg");
   background-size: cover;
   background-position: center;
   z-index: 0;
@@ -1171,7 +1172,7 @@ a:hover {
   }
 
   .hero {
-    padding-top: clamp(96px, 18vh, 140px);
+    padding-top: clamp(16px, 2vh, 24px);
   }
 
   .section {
