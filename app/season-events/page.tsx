@@ -24,7 +24,7 @@ const concerts: ConcertInfo[] = [
     title: "Joyful Reflections",
     date: "November 16, 2025 · 7:30 PM",
     venue: "Cary Hall at the DiMenna Center for Classical Music, New York",
-    photo: "/images/Chromas_group.png",
+    photo: "/images/Chromas_Hero.jpeg",
     photoAlt: "Chromas Ensemble at their inaugural concert",
     summary:
       "Our inaugural concert traced musical color across eras. Conductor Kaleb Zhu led Mozart's Haffner Symphony, Stravinsky's Pulcinella Suite, and Prokofiev's Classical Symphony.",
