@@ -94,7 +94,7 @@ export function MainLanding() {
             <div className="hero-text">
               <h1 className="hero-title">Chromas Ensemble</h1>
               <p className="hero-tagline">
-                A student-led, volunteer orchestra exploring intersectional performance. 
+                A student-led orchestra exploring intersectional performance. 
               </p>
             </div>
           </div>
