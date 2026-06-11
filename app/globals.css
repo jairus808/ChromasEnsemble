@@ -513,6 +513,15 @@ a:hover {
   color: var(--color-slate);
 }
 
+.about-nonprofit {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+
 .highlight-card {
   background: rgba(255, 255, 255, 0.85);
   border-radius: var(--radius-lg);
@@ -862,6 +871,21 @@ a:hover {
   border-radius: 10px;
   box-shadow: 0 28px 52px rgba(17, 16, 23, 0.14);
   background: #0d0f1a;
+}
+
+.events-program-credits {
+  display: block;
+  text-align: center;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: var(--color-slate);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 160ms ease;
+}
+
+.events-program-credits:hover {
+  color: var(--color-ink);
 }
 
 .embed-hint {
@@ -1373,6 +1397,14 @@ a:hover {
   gap: clamp(32px, 6vw, 56px);
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   align-items: start;
+}
+
+.concert-program-inner.flipped .concert-program-note {
+  order: 2;
+}
+
+.concert-program-inner.flipped .events-program-embed {
+  order: 1;
 }
 
 .concert-program-note {

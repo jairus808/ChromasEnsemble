@@ -85,7 +85,7 @@ export function SiteHeader() {
         style={{ "--header-scale": headerScale } as CSSProperties}
       >
         <div className="container">
-          <div className={`brand emblem${showWordmark ? " hidden" : " visible"}`}>
+          <Link href="/" className={`brand emblem${showWordmark ? " hidden" : " visible"}`}>
             <Image
               src="/images/better_logo_transparent.png"
               alt="Chromas Ensemble emblem"
@@ -93,11 +93,11 @@ export function SiteHeader() {
               height={64}
               priority
             />
-          </div>
-          <div className={`brand wordmark${showWordmark ? " visible" : " hidden"}`}>
+          </Link>
+          <Link href="/" className={`brand wordmark${showWordmark ? " visible" : " hidden"}`}>
             <span className="brand-mark">Chromas</span>
             <span className="brand-sub">Ensemble</span>
-          </div>
+          </Link>
           <button
             type="button"
             className="nav-toggle"

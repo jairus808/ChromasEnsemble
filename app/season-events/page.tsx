@@ -19,6 +19,21 @@ type ConcertInfo = {
 
 const concerts: ConcertInfo[] = [
   {
+    number: "Concert II",
+    status: "past",
+    title: "Chromas: Visualizing Temporal Expressivity",
+    date: "April 23, 2026 · 5:00 PM",
+    venue: "Enormous Room, AFAM House, Yale University",
+    photo: "/images/bigbig.jpeg",
+    photoAlt: "Chromas Ensemble at Yale — Visualizing Temporal Expressivity",
+    summary:
+      "In collaboration with Jairus Rhoades' Senior thesis on visualizing temporal expressivity, conductor Lucas Amory leads a Chromas chamber ensemble through a program of Glass, Dvořák, and Britten — pairing live music with visuals that respond to temporal expression in real time.",
+    programNote:
+      "This performance marks Chromas Ensemble's first multimedia endeavor, premiering at Yale University. The concert explores how visuals can be generated and shaped by the expressive timing of live musicians, blurring the boundary between performance and installation.",
+    canvaEmbedUrl: "https://www.canva.com/design/DAHHpcAjD0Y/6FwCNELU3QEo-2Sd8rOiNg/view?embed",
+    canvaViewUrl: "https://www.canva.com/design/DAHHpcAjD0Y/6FwCNELU3QEo-2Sd8rOiNg/view?utm_content=DAHHpcAjD0Y&utm_campaign=designshare&utm_medium=embeds&utm_source=link",
+  },
+  {//can determine the order of the blocks through listing their order. 
     number: "Concert I",
     status: "past",
     title: "Joyful Reflections",
@@ -37,19 +52,6 @@ const concerts: ConcertInfo[] = [
       "https://www.canva.com/design/DAG43hMeKP8/LnXqCpB28kHwnxf6czeMUg/view?embed",
     canvaViewUrl:
       "https://www.canva.com/design/DAG43hMeKP8/LnXqCpB28kHwnxf6czeMUg/view?utm_content=DAG43hMeKP8&utm_campaign=designshare&utm_medium=embeds&utm_source=link",
-  },
-  {
-    number: "Concert II",
-    status: "past",
-    title: "Chromas: Visualizing Temporal Expressivity",
-    date: "April 23, 2026 · 5:00 PM",
-    venue: "Enormous Room, AFAM House, Yale University",
-    photo: "/images/bigbig.jpeg",
-    photoAlt: "Chromas Ensemble at Yale — Visualizing Temporal Expressivity",
-    summary:
-      "In collaboration with Jairus Rhoades' Senior thesis on visualizing temporal expressivity, conductor Lucas Amory leads a Chromas chamber ensemble through a program of Glass, Dvořák, and Britten — pairing live music with visuals that respond to temporal expression in real time.",
-    programNote:
-      "This performance marks Chromas Ensemble's first multimedia endeavor, premiering at Yale University. The concert explores how visuals can be generated and shaped by the expressive timing of live musicians, blurring the boundary between performance and installation.",
   },
 ];
 
@@ -133,7 +135,7 @@ export default function SeasonEventsPage() {
 
               {concert.programNote && (
                 <div className="concert-program">
-                  <div className="container concert-program-inner">
+                  <div className={`container concert-program-inner${index % 2 !== 0 ? " flipped" : ""}`}>
                     <article className="concert-program-note">
                       <p className="events-eyebrow">Program note</p>
                       <h3>Why this concert matters</h3>
@@ -180,7 +182,7 @@ export default function SeasonEventsPage() {
                             rel="noopener noreferrer"
                             className="events-program-credits"
                           >
-                            View full program online
+                            Click here to view the full program online
                           </a>
                         )}
                       </div>

@@ -94,7 +94,7 @@ export function MainLanding() {
             <div className="hero-text">
               <h1 className="hero-title">Chromas Ensemble</h1>
               <p className="hero-tagline">
-                A student-led orchestra exploring intersectional performance. 
+                A student-led orchestra based in New York City exploring intersectional performances.
               </p>
             </div>
           </div>
@@ -104,8 +104,10 @@ export function MainLanding() {
           <div className="container">
             <h2>Season &amp; Events</h2>
             <p className="lede">
-              2025-2026 Season: Our Premier Concert! Join us at Cary Hall inside the DiMenna Center on November 16th for a
-              night of music and community.
+              2025-2026 Season: Thank you for your support in making our inaugural season possible. It was highlighted by our premier 
+              concert in Cary Hall at DiMenna Center for Musical Arts and our premier multimedia collaboration with Jairus Rhoades 
+              at the AFAM Center at Yale University. Please stay tuned by signing up for our newsletter as we prepare to present our
+              second season of many more exciting events!
             </p>
             <div className="season-grid">
               {seasonPrograms.map((program, index) => (
@@ -148,7 +150,10 @@ export function MainLanding() {
               </p>
               <p>
                 With a vision to collaborate with artists, students, and multi-media projects, we aim to set ourselves apart
-                through exploring the ways music can be experienced. 
+                through exploring the ways music can be experienced.
+              </p>
+              <p className="about-nonprofit">
+                Chromas Ensemble is a registered 501(c)(3) nonprofit organization.
               </p>
             </div>
             {/* <div className="highlight-card">
@@ -336,6 +341,7 @@ export function MainLanding() {
           </div>
         </div>
         <div className="container footer-meta">
+          <p>Chromas Ensemble is a 501(c)(3) nonprofit organization. Donations are tax-deductible to the extent permitted by law.</p>
           <p>&copy; {new Date().getFullYear()} Chromas Ensemble. Website by Jairus Rhoades.</p>
         </div>
       </footer>
