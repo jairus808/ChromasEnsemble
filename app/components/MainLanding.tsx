@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from "react";
+import Link from "next/link";
 import { SiteHeader } from "./SiteHeader";
 
 const seasonPrograms = [
   {
     title: "Joyful Reflections",
+    slug: "joyful-reflections",
     details: "November 16 · Cary Hall, DiMenna Center for Classical Music",
     description:
       "Chromas Ensemble opens its first season with music that bridges past and present: Mozart’s Haffner Symphony alongside Stravinsky’s Pulcinella Suite and Prokofiev’s Classical Symphony.",
@@ -13,10 +15,19 @@ const seasonPrograms = [
   },
   {
     title: "Chromas: Visualizing Temporal Expressivity",
+    slug: "visualizing-temporal-expressivity",
     details: "Thursday, April 23rd, 2026 · AFAM House, Enormous Room, Yale University",
     description:
       "Chromas heads to Yale premiering visuals that interact with live-time temporal expressivity.",
   },
+];
+
+const zeffyDonateUrl = "https://www.zeffy.com/en-US/donation-form/donate-to-young-artists";
+
+const waysToGive = [
+  "One-time or recurring donations",
+  "Sponsor a concert or multimedia collaboration",
+  "Contact us for more!"
 ];
 
 const latestNews = [
@@ -92,9 +103,12 @@ export function MainLanding() {
           <div className="hero-overlay" />
           <div className="container hero-content">
             <div className="hero-text">
-              <h1 className="hero-title">Chromas Ensemble</h1>
+              <div className="hero-title-group">
+                <h1 className="text">The</h1>
+                <h1 className="hero-title">Chromas Ensemble</h1>
+              </div>
               <p className="hero-tagline">
-                A student-led orchestra based in New York City exploring intersectional performances.
+                  We are a New York City-based ensemble exploring intersectional performances that engage the community with thoughtful performance mediums.
               </p>
             </div>
           </div>
@@ -104,7 +118,7 @@ export function MainLanding() {
           <div className="container">
             <h2>Season &amp; Events</h2>
             <p className="lede">
-              2025-2026 Season: Thank you for your support in making our inaugural season possible. It was highlighted by our premier 
+              <b>Fall 2025-Spring 2026 Season:</b> Thank you for your support in making our inaugural season possible. It was highlighted by our premier 
               concert in Cary Hall at DiMenna Center for Musical Arts and our premier multimedia collaboration with Jairus Rhoades 
               at the AFAM Center at Yale University. Please stay tuned by signing up for our newsletter as we prepare to present our
               second season of many more exciting events!
@@ -115,11 +129,16 @@ export function MainLanding() {
                   className={`season-card${index === 0 ? " featured" : index === 1 ? " secondary" : ""}`}
                   key={program.title}
                 >
-                  <h3>{program.title}</h3>
-                  <p className="details">{program.details}</p>
-                  <p>{program.description}</p>
-                  {program.livestreamUrl && (
-                    <div className="season-card-actions">
+                  <Link href={`/season-events#${program.slug}`} className="season-card-link">
+                    <h3>{program.title}</h3>
+                    <p className="details">{program.details}</p>
+                    <p>{program.description}</p>
+                  </Link>
+                  <div className="season-card-actions">
+                    <Link className="btn primary" href={`/season-events#${program.slug}`}>
+                      View details
+                    </Link>
+                    {program.livestreamUrl && (
                       <a
                         className="btn secondary"
                         href={program.livestreamUrl}
@@ -128,8 +147,8 @@ export function MainLanding() {
                       >
                         Livestream
                       </a>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </article>
               ))}
             </div>
@@ -146,7 +165,7 @@ export function MainLanding() {
             <div>
               <h2>Led by students, driven by curiosity</h2>
               <p>
-                Founded in September 2025, the Chromas Ensemble is a student-led, volunteer-based orchestra dedicated to creating large-scale, collaborative performances that bring together musicians and artists across disciplines. Our mission is to provide a space for free-form, organic music-making where students and emerging artists can experiment, perform major works often beyond the reach of student groups, and share in the joy of music as a communal experience.
+                Founded in September 2025, the Chromas Ensemble has been a student-led, volunteer-based orchestra dedicated to creating large-scale, collaborative performances that bring together musicians and artists across disciplines. Our mission is to provide a space for free-form, organic music-making where students and emerging artists can experiment, perform major works often beyond the reach of student groups, and share in the joy of music as a communal experience.
               </p>
               <p>
                 With a vision to collaborate with artists, students, and multi-media projects, we aim to set ourselves apart
@@ -155,6 +174,11 @@ export function MainLanding() {
               <p className="about-nonprofit">
                 Chromas Ensemble is a registered 501(c)(3) nonprofit organization.
               </p>
+              <div className="about-more">
+                <Link className="btn secondary" href="/about-us">
+                  Learn more about us
+                </Link>
+              </div>
             </div>
             {/* <div className="highlight-card">
               <h3>By the numbers</h3>
@@ -188,7 +212,72 @@ export function MainLanding() {
             </div>
           </div>
         </section>
-{/* 
+
+        <section id="support" className="section support-highlight">
+          <div className="container">
+            <div className="latest-header">
+              <p className="latest-eyebrow">Support Chromas</p>
+              <h2>Help us build our next season</h2>
+              <p className="about-team-sub">
+                Chromas Ensemble is a registered 501(c)(3) nonprofit run entirely by students and
+                volunteers. Your gift covers venue costs, musician stipends, and the multimedia
+                collaborations that make our programming distinct.
+              </p>
+            </div>
+
+            <div className="support-donate support-highlight-banner">
+              <div className="support-donate-inner">
+                <div>
+                  <h3>Make a gift in minutes</h3>
+                  <p>
+                    Donate securely through Zeffy — 100% of your gift goes directly to Chromas
+                    Ensemble.
+                  </p>
+                </div>
+                <a
+                  className="btn primary support-donate-btn"
+                  href={zeffyDonateUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Donate via Zeffy
+                </a>
+              </div>
+            </div>
+
+            <div className="split support-highlight-grid">
+              <div className="highlight-card">
+                <h3>Ways to give</h3>
+                <ul className="support-ways-list">
+                  {waysToGive.map((way) => (
+                    <li key={way}>{way}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="highlight-card">
+                <h3>Become a Patron</h3>
+                <p>
+                  Ready to uplift the ensemble at a deeper level? Reach out and we&apos;ll tailor a
+                  giving opportunity that resonates with your goals.
+                </p>
+                <button
+                  type="button"
+                  className="btn ghost"
+                  onClick={() => setActiveModal("patron")}
+                >
+                  Start the Conversation
+                </button>
+              </div>
+            </div>
+
+            <div className="support-cta">
+              <Link className="btn secondary" href="/support">
+                See the full support page
+              </Link>
+            </div>
+          </div>
+        </section>
+{/*
         <section id="media" className="section media">
           <div className="container split">
             <div>
@@ -327,14 +416,12 @@ export function MainLanding() {
             </a>
           </div>
           <div className="footer-column">
-            <p className="footer-eyebrow">Support</p>
-            <button
-              type="button"
-              className="footer-link ghost"
-              onClick={() => setActiveModal("patron")}
-            >
+            <Link className="footer-eyebrow footer-eyebrow-link" href="/support">
+              Support
+            </Link>
+            <Link className="footer-link" href="/support">
               Become a donor
-            </button>
+            </Link>
             <a className="footer-link" href="mailto:chromasensemble@gmail.com?subject=Donor%20Inquiry">
               Email our team
             </a>

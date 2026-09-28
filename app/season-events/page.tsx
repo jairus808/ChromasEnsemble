@@ -3,6 +3,7 @@ import { SiteHeader } from "../components/SiteHeader";
 
 type ConcertInfo = {
   number: string;
+  slug: string;
   status: "past" | "upcoming";
   title: string;
   date: string;
@@ -20,6 +21,7 @@ type ConcertInfo = {
 const concerts: ConcertInfo[] = [
   {
     number: "Concert II",
+    slug: "visualizing-temporal-expressivity",
     status: "past",
     title: "Chromas: Visualizing Temporal Expressivity",
     date: "April 23, 2026 · 5:00 PM",
@@ -33,8 +35,9 @@ const concerts: ConcertInfo[] = [
     canvaEmbedUrl: "https://www.canva.com/design/DAHHpcAjD0Y/6FwCNELU3QEo-2Sd8rOiNg/view?embed",
     canvaViewUrl: "https://www.canva.com/design/DAHHpcAjD0Y/6FwCNELU3QEo-2Sd8rOiNg/view?utm_content=DAHHpcAjD0Y&utm_campaign=designshare&utm_medium=embeds&utm_source=link",
   },
-  {//can determine the order of the blocks through listing their order. 
+  {//can determine the order of the blocks through listing their order.
     number: "Concert I",
+    slug: "joyful-reflections",
     status: "past",
     title: "Joyful Reflections",
     date: "November 16, 2025 · 7:30 PM",
@@ -73,6 +76,7 @@ export default function SeasonEventsPage() {
           {concerts.map((concert, index) => (
             <section
               key={concert.number}
+              id={concert.slug}
               className={`concert-entry ${concert.status}${index % 2 !== 0 ? " flipped" : ""}`}
             >
               <div className="container concert-entry-inner">
