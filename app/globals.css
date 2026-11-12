@@ -1476,9 +1476,105 @@ a:hover {
   line-height: 1.7;
 }
 
+/* "Program coming soon" card for upcoming concerts without a program yet */
+.events-program-soon {
+  background: #fff;
+  padding: clamp(28px, 5vw, 40px);
+  border-radius: 28px;
+  box-shadow: 0 24px 48px rgba(17, 16, 23, 0.08);
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.events-program-soon h3 {
+  margin: 0;
+  font-family: var(--font-heading, var(--font-grotesk));
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+}
+
+.events-program-soon p {
+  margin: 0;
+  color: var(--color-slate);
+  line-height: 1.7;
+}
+
+.events-program-soon ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ── Per-concert ticketing (Zeffy) ───────────────────── */
+
+.concert-entry-tickets {
+  justify-self: end;
+  width: 100%;
+  max-width: 440px;
+  background: #fff;
+  padding: clamp(18px, 3vw, 28px);
+  border-radius: 24px;
+  box-shadow: 0 24px 48px rgba(17, 16, 23, 0.08);
+  display: grid;
+  gap: 10px;
+}
+
+.concert-entry-tickets h3 {
+  margin: 0;
+  font-family: var(--font-heading, var(--font-grotesk));
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+}
+
+/* Entries with a ticket form: let the text column grow to fill the
+   space beside the tall Zeffy card. */
+.concert-entry.has-tickets .concert-entry-inner {
+  grid-template-columns: 1.5fr 1fr;
+}
+
+.concert-entry.has-tickets .concert-entry-body {
+  gap: clamp(16px, 2.5vh, 26px);
+}
+
+.concert-entry.has-tickets .concert-entry-body h2 {
+  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+}
+
+.concert-entry.has-tickets .concert-date {
+  font-size: clamp(0.85rem, 1.3vw, 1rem);
+}
+
+.concert-entry.has-tickets .concert-venue {
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+}
+
+.concert-entry.has-tickets .concert-summary {
+  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+  line-height: 1.8;
+  max-width: none;
+}
+
+.concert-photo-full {
+  margin-top: clamp(48px, 8vh, 80px);
+}
+
+.concert-photo-full img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 @media (max-width: 720px) {
-  .concert-entry-inner {
+  .concert-entry-inner,
+  .concert-entry.has-tickets .concert-entry-inner {
     grid-template-columns: 1fr;
+  }
+
+  .concert-entry-tickets {
+    justify-self: stretch;
+    max-width: none;
   }
 
   .concert-entry.flipped .concert-entry-body {

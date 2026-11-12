@@ -26,7 +26,7 @@ const members: Member[] = [
   {
     name: "Pablo Molano",
     role: "Conductor",
-    bio: "Conducted Chromas Ensemble's inaugural concert, Joyful Reflections, leading a program of Mozart's Haffner Symphony, Stravinsky's Pulcinella Suite, and Prokofiev's Classical Symphony.",
+    bio: "Co-founder and artistic director of Chromas Ensemble.",
     size: "lg",
     align: "start",
     tint: "blue",

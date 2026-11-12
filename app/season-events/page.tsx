@@ -1,7 +1,17 @@
 import Image from "next/image";
 import { SiteHeader } from "../components/SiteHeader";
+import { ZeffyEmbed } from "../components/ZeffyEmbed";
+
+type SeasonId = "2026-2027" | "2025-2026";
+
+type SeasonInfo = {
+  id: SeasonId;
+  heading: string;
+  subtitle: string;
+};
 
 type ConcertInfo = {
+  season: SeasonId;
   number: string;
   slug: string;
   status: "past" | "upcoming";
@@ -14,12 +24,50 @@ type ConcertInfo = {
   programNote?: string;
   livestreamUrl?: string;
   eventbriteUrl?: string;
+  /** Zeffy ticketing form path, e.g. "/embed/ticketing/..." */
+  zeffyFormPath?: string;
   canvaEmbedUrl?: string;
   canvaViewUrl?: string;
 };
 
+// Seasons render in this order; each concert below is grouped under its season.
+const seasons: SeasonInfo[] = [
+  {
+    id: "2026-2027",
+    heading: "2026–27 Season",
+    subtitle:
+      "Get ready for a new year of Chromas, with more concerts, more collaborations, and more musicians!",
+  },
+  {
+    id: "2025-2026",
+    heading: "2025–26 Season",
+    subtitle: "Two concerts. One inaugural season.",
+  },
+];
+
+// Within a season, concerts render in the order listed here.
 const concerts: ConcertInfo[] = [
   {
+    season: "2026-2027",
+    number: "Concert III",
+    slug: "in-search-of-enlightenment",
+    status: "upcoming",
+    title: "In Search of Enlightenment",
+    date: "November 15, 2026 · 8:00 PM",
+    venue: "Cary Hall at the DiMenna Center for Classical Music, New York",
+    photo: "/images/enlightenment_banner.png",
+    photoAlt:
+      "In Search of Enlightenment — Christina Nam, violin; Andy Park, viola; Lucas Amory, conductor. Stravinsky, Haydn, and Mozart at Cary Hall, DiMenna Center for Classical Music.",
+    summary:
+      "Chromas opens its second season with a program in search of enlightenment directed by Lucas Amory and featuring Christina Nam, violin, and Andy Park, viola — with Stravinsky's Suites for Small Orchestra, Haydn's Symphony No. 102, and Mozart's Sinfonia Concertante.",
+    programNote:
+      "These works, each a product of restless curiosity and bold experimentation, embody the enlightenment spirit — and that same spirit inspired us to partner with the Stuyvesant Science Olympiad team for this concert. Just as the composers on this program pushed the boundaries of what music could be, these high-achieving high schoolers are pushing the boundaries of what they can discover. Your support matters: all ticket proceeds go directly to funding their journey to compete in competitions and develop their pre-college careers in STEM. Come for the music, and leave having invested in the next generation of curious minds.",
+    zeffyFormPath: "/embed/ticketing/chromas-ensemble-enlightenment-concert",
+    // No canvaEmbedUrl yet — the page shows a "program coming soon" card
+    // with links to previous programs until the new program is designed.
+  },
+  {
+    season: "2025-2026",
     number: "Concert II",
     slug: "visualizing-temporal-expressivity",
     status: "past",
@@ -32,10 +80,13 @@ const concerts: ConcertInfo[] = [
       "In collaboration with Jairus Rhoades' Senior thesis on visualizing temporal expressivity, conductor Lucas Amory leads a Chromas chamber ensemble through a program of Glass, Dvořák, and Britten — pairing live music with visuals that respond to temporal expression in real time.",
     programNote:
       "This performance marks Chromas Ensemble's first multimedia endeavor, premiering at Yale University. The concert explores how visuals can be generated and shaped by the expressive timing of live musicians, blurring the boundary between performance and installation.",
-    canvaEmbedUrl: "https://www.canva.com/design/DAHHpcAjD0Y/6FwCNELU3QEo-2Sd8rOiNg/view?embed",
-    canvaViewUrl: "https://www.canva.com/design/DAHHpcAjD0Y/6FwCNELU3QEo-2Sd8rOiNg/view?utm_content=DAHHpcAjD0Y&utm_campaign=designshare&utm_medium=embeds&utm_source=link",
+    canvaEmbedUrl:
+      "https://www.canva.com/design/DAHHpcAjD0Y/6FwCNELU3QEo-2Sd8rOiNg/view?embed",
+    canvaViewUrl:
+      "https://www.canva.com/design/DAHHpcAjD0Y/6FwCNELU3QEo-2Sd8rOiNg/view?utm_content=DAHHpcAjD0Y&utm_campaign=designshare&utm_medium=embeds&utm_source=link",
   },
-  {//can determine the order of the blocks through listing their order.
+  {
+    season: "2025-2026",
     number: "Concert I",
     slug: "joyful-reflections",
     status: "past",
@@ -63,141 +114,232 @@ export default function SeasonEventsPage() {
     <>
       <SiteHeader />
       <main className="events-layout">
+        {seasons.map((season, seasonIndex) => {
+          const seasonConcerts = concerts.filter(
+            (concert) => concert.season === season.id
+          );
 
-        <header className="season-page-header">
-          <div className="container">
-            <p className="season-page-eyebrow">Chromas Ensemble</p>
-            <h1>2025–26 Season</h1>
-            <p className="season-page-sub">Two concerts. One inaugural season.</p>
-          </div>
-        </header>
-
-        <div className="concerts-list">
-          {concerts.map((concert, index) => (
-            <section
-              key={concert.number}
-              id={concert.slug}
-              className={`concert-entry ${concert.status}${index % 2 !== 0 ? " flipped" : ""}`}
-            >
-              <div className="container concert-entry-inner">
-                <div className="concert-entry-body">
-                  <span className={`concert-badge ${concert.status}`}>
-                    {concert.number} · {concert.status === "past" ? "Past" : "Upcoming"}
-                  </span>
-                  <h2>{concert.title}</h2>
-                  <p className="concert-date">{concert.date}</p>
-                  <p className="concert-venue">{concert.venue}</p>
-                  <p className="concert-summary">{concert.summary}</p>
-                  {(concert.livestreamUrl || concert.eventbriteUrl) && (
-                    <div className="concert-actions">
-                      {concert.livestreamUrl && (
-                        <a
-                          className="btn primary"
-                          href={concert.livestreamUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Watch Recording
-                        </a>
-                      )}
-                      {concert.eventbriteUrl && (
-                        <a
-                          className="btn secondary"
-                          href={concert.eventbriteUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Eventbrite
-                        </a>
-                      )}
-                    </div>
-                  )}
-                  {concert.status === "upcoming" && (
-                    <div className="concert-actions">
-                      <a
-                        className="btn ghost"
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSdzSFglaURsQXBVOI2JCaEqoTUpIO1ih5a0viYpbsggml5rzA/viewform?usp=publish-editor"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Join Newsletter for Updates
-                      </a>
-                    </div>
-                  )}
+          return (
+            <div key={season.id} id={`season-${season.id}`}>
+              <header className="season-page-header">
+                <div className="container">
+                  <p className="season-page-eyebrow">Chromas Ensemble</p>
+                  <h1>{season.heading}</h1>
+                  <p className="season-page-sub">{season.subtitle}</p>
                 </div>
+              </header>
 
-                <div className="concert-entry-visual">
-                  <Image
-                    src={concert.photo}
-                    alt={concert.photoAlt}
-                    width={720}
-                    height={540}
-                    priority={index === 0}
-                  />
-                </div>
-              </div>
-
-              {concert.programNote && (
-                <div className="concert-program">
-                  <div className={`container concert-program-inner${index % 2 !== 0 ? " flipped" : ""}`}>
-                    <article className="concert-program-note">
-                      <p className="events-eyebrow">Program note</p>
-                      <h3>Why this concert matters</h3>
-                      <p>{concert.programNote}</p>
-                    </article>
-                    {concert.canvaEmbedUrl && (
-                      <div className="events-program-embed">
-                        <div
-                          style={{
-                            position: "relative",
-                            width: "100%",
-                            height: 0,
-                            paddingTop: "77.2727%",
-                            paddingBottom: 0,
-                            boxShadow: "0 2px 8px 0 rgba(63,69,81,0.16)",
-                            marginTop: "1.6em",
-                            marginBottom: "0.9em",
-                            overflow: "hidden",
-                            borderRadius: "8px",
-                            willChange: "transform",
-                          }}
-                        >
-                          <iframe
-                            loading="lazy"
-                            style={{
-                              position: "absolute",
-                              width: "100%",
-                              height: "100%",
-                              top: 0,
-                              left: 0,
-                              border: "none",
-                              padding: 0,
-                              margin: 0,
-                            }}
-                            src={concert.canvaEmbedUrl}
-                            title={`${concert.title} program`}
-                            allowFullScreen
-                          />
-                        </div>
-                        {concert.canvaViewUrl && (
-                          <a
-                            href={concert.canvaViewUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="events-program-credits"
-                          >
-                            Click here to view the full program online
-                          </a>
+              <div className="concerts-list">
+                {seasonConcerts.map((concert, index) => (
+                  <section
+                    key={concert.slug}
+                    id={concert.slug}
+                    className={`concert-entry ${concert.status}${
+                      concert.zeffyFormPath ? " has-tickets" : ""
+                    }${index % 2 !== 0 ? " flipped" : ""}`}
+                  >
+                    <div className="container concert-entry-inner">
+                      <div className="concert-entry-body">
+                        <span className={`concert-badge ${concert.status}`}>
+                          {concert.number} ·{" "}
+                          {concert.status === "past" ? "Past" : "Upcoming"}
+                        </span>
+                        <h2>{concert.title}</h2>
+                        <p className="concert-date">{concert.date}</p>
+                        <p className="concert-venue">{concert.venue}</p>
+                        <p className="concert-summary">{concert.summary}</p>
+                        {(concert.livestreamUrl || concert.eventbriteUrl) && (
+                          <div className="concert-actions">
+                            {concert.livestreamUrl && (
+                              <a
+                                className="btn primary"
+                                href={concert.livestreamUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Watch Recording
+                              </a>
+                            )}
+                            {concert.eventbriteUrl && (
+                              <a
+                                className="btn secondary"
+                                href={concert.eventbriteUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Eventbrite
+                              </a>
+                            )}
+                          </div>
+                        )}
+                        {concert.status === "upcoming" && (
+                          <>
+                            {concert.zeffyFormPath && (
+                              <div className="concert-actions">
+                                <a
+                                  className="btn primary"
+                                  href={`https://www.zeffy.com${concert.zeffyFormPath.replace(
+                                    "/embed/",
+                                    "/"
+                                  )}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Get Tickets on Zeffy
+                                </a>
+                              </div>
+                            )}
+                            <div className="concert-actions">
+                              <a
+                                className="btn ghost"
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSdzSFglaURsQXBVOI2JCaEqoTUpIO1ih5a0viYpbsggml5rzA/viewform?usp=publish-editor"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Join Newsletter for Updates
+                              </a>
+                            </div>
+                          </>
                         )}
                       </div>
-                    )}
-                  </div>
-                </div>
-              )}
-            </section>
-          ))}
-        </div>
 
+                      {concert.zeffyFormPath ? (
+                        <div className="concert-entry-tickets">
+                          <p className="events-eyebrow">Tickets</p>
+                          <h3>Reserve your seats</h3>
+                          <ZeffyEmbed
+                            formPath={concert.zeffyFormPath}
+                            title={`${concert.title} tickets — powered by Zeffy`}
+                          />
+                        </div>
+                      ) : (
+                        <div className="concert-entry-visual">
+                          <Image
+                            src={concert.photo}
+                            alt={concert.photoAlt}
+                            width={720}
+                            height={540}
+                            priority={seasonIndex === 0 && index === 0}
+                          />
+                        </div>
+                      )}
+                    </div>
+
+                    {concert.zeffyFormPath && (
+                      <div className="concert-photo-full">
+                        <Image
+                          src={concert.photo}
+                          alt={concert.photoAlt}
+                          width={3076}
+                          height={1081}
+                          priority={seasonIndex === 0 && index === 0}
+                        />
+                      </div>
+                    )}
+
+                    {concert.programNote && (
+                      <div className="concert-program">
+                        <div
+                          className={`container concert-program-inner${
+                            index % 2 !== 0 ? " flipped" : ""
+                          }`}
+                        >
+                          <article className="concert-program-note">
+                            <p className="events-eyebrow">Program note</p>
+                            <h3>Why this concert matters</h3>
+                            <p>{concert.programNote}</p>
+                          </article>
+                          {concert.canvaEmbedUrl && (
+                            <div className="events-program-embed">
+                              <div
+                                style={{
+                                  position: "relative",
+                                  width: "100%",
+                                  height: 0,
+                                  paddingTop: "77.2727%",
+                                  paddingBottom: 0,
+                                  boxShadow:
+                                    "0 2px 8px 0 rgba(63,69,81,0.16)",
+                                  marginTop: "1.6em",
+                                  marginBottom: "0.9em",
+                                  overflow: "hidden",
+                                  borderRadius: "8px",
+                                  willChange: "transform",
+                                }}
+                              >
+                                <iframe
+                                  loading="lazy"
+                                  style={{
+                                    position: "absolute",
+                                    width: "100%",
+                                    height: "100%",
+                                    top: 0,
+                                    left: 0,
+                                    border: "none",
+                                    padding: 0,
+                                    margin: 0,
+                                  }}
+                                  src={concert.canvaEmbedUrl}
+                                  title={`${concert.title} program`}
+                                  allowFullScreen
+                                />
+                              </div>
+                              {concert.canvaViewUrl && (
+                                <a
+                                  href={concert.canvaViewUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="events-program-credits"
+                                >
+                                  Click here to view the full program online
+                                </a>
+                              )}
+                            </div>
+                          )}
+                          {!concert.canvaEmbedUrl &&
+                            concert.status === "upcoming" && (
+                              <aside className="events-program-soon">
+                                <p className="events-eyebrow">
+                                  Concert program
+                                </p>
+                                <h3>Online program coming soon</h3>
+                                <p>
+                                  We&apos;re putting the finishing touches on
+                                  the program for this concert. In the
+                                  meantime, take a look at our previous
+                                  programs:
+                                </p>
+                                <ul>
+                                  {concerts
+                                    .filter(
+                                      (previous) =>
+                                        previous.canvaViewUrl &&
+                                        previous.slug !== concert.slug
+                                    )
+                                    .map((previous) => (
+                                      <li key={previous.slug}>
+                                        <a
+                                          className="btn ghost"
+                                          href={previous.canvaViewUrl}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                        >
+                                          {previous.title}
+                                        </a>
+                                      </li>
+                                    ))}
+                                </ul>
+                              </aside>
+                            )}
+                        </div>
+                      </div>
+                    )}
+                  </section>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </main>
     </>
   );
