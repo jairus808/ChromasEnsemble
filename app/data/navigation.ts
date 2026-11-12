@@ -8,5 +8,5 @@ export const navItems: NavItem[] = [
   { label: "About", href: "/about-us" },
   { label: "Season & Events", href: "/season-events" },
   { label: "Support", href: "/support" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "mailto:chromasensemble@gmail.com" },
 ];

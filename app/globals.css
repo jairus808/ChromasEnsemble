@@ -655,7 +655,7 @@ a:hover {
   inset: 0;
   padding: (128px, 60px, 30px);
   background: linear-gradient(155deg, rgba(8, 10, 18, 0.68), rgba(24, 40, 68, 0.72), rgba(48, 86, 132, 0.64)),
-    url("/images/Chromas_Hero.jpeg");
+    url("/images/enlightenment_banner.png");
   background-size: cover;
   background-position: center;
   z-index: 0;
@@ -663,7 +663,8 @@ a:hover {
 }
 
 .season-card.featured > *,
-.season-card.secondary > * {
+.season-card.secondary > *,
+.season-card.tertiary > * {
   position: relative;
   z-index: 1;
 }
@@ -683,22 +684,46 @@ a:hover {
   position: absolute;
   inset: 0;
   background: linear-gradient(155deg, rgba(8, 10, 18, 0.72), rgba(30, 20, 10, 0.68), rgba(60, 40, 20, 0.6)),
+    url("/images/Chromas_Hero.jpeg");
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.season-card.tertiary {
+  position: relative;
+  overflow: hidden;
+  padding: 32px;
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 32px 48px rgba(10, 12, 22, 0.45);
+  background: none;
+}
+
+.season-card.tertiary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(155deg, rgba(8, 10, 18, 0.72), rgba(30, 20, 10, 0.68), rgba(60, 40, 20, 0.6)),
     url("/images/_DSC7428.jpg");
   background-size: cover;
   background-position: center;
   z-index: 0;
 }
 
-.season-card.secondary h3 {
+.season-card.secondary h3,
+.season-card.tertiary h3 {
   font-family: var(--font-heading, var(--font-grotesk));
   font-size: clamp(1.6rem, 3vw, 2rem);
 }
 
-.season-card.secondary .details {
+.season-card.secondary .details,
+.season-card.tertiary .details {
   color: rgba(255, 255, 255, 0.78);
 }
 
-.season-card.secondary p {
+.season-card.secondary p,
+.season-card.tertiary p {
   color: rgba(255, 255, 255, 0.9);
 }
 

@@ -4,7 +4,24 @@ import { useState } from "react";
 import Link from "next/link";
 import { SiteHeader } from "./SiteHeader";
 
-const seasonPrograms = [
+type SeasonProgram = {
+  title: string;
+  slug: string;
+  details: string;
+  description: string;
+  livestreamUrl?: string;
+  ticketsUrl?: string;
+};
+
+const seasonPrograms: SeasonProgram[] = [
+  {
+    title: "In Search of Enlightenment",
+    slug: "in-search-of-enlightenment",
+    details: "Sunday, November 15, 2026 · 8:00 PM · Cary Hall, DiMenna Center for Classical Music",
+    description:
+      "Chromas opens its second season: Lucas Amory conducts Stravinsky's Suites for Small Orchestra, Haydn's Symphony No. 102, and Mozart's Sinfonia Concertante with Christina Nam, violin, and Andy Park, viola. All ticket proceeds support the Stuyvesant Science Olympiad team.",
+    ticketsUrl: "https://www.zeffy.com/ticketing/chromas-ensemble-enlightenment-concert",
+  },
   {
     title: "Joyful Reflections",
     slug: "joyful-reflections",
@@ -28,23 +45,6 @@ const waysToGive = [
   "One-time or recurring donations",
   "Sponsor a concert or multimedia collaboration",
   "Contact us for more!"
-];
-
-const latestNews = [
-   {
-    eyebrow: "Chromas' first multimedia endeavors take place at Yale",
-    title: "Chromas: Visualizing Temporal Expressivity",
-    date: "Thursday, April 23rd · 5:00 PM · Enormous Room, AFAM House, Yale University",
-    description:
-      "In collaboration with a senior thesis considering how to visualize temporal expressivity by Jairus Rhoades, Lucas Amory conducts a Chromas chamber ensemble featuring a program of Glass, Dvorak, and Britten.",
-  },
-  {
-    eyebrow: "Premier Concert",
-    title: "Joyful Reflections",
-    date: "Sunday, November 16 · 7:30 PM · Cary Hall, DiMenna Center",
-    description:
-      "Join us for our first concert featuring students and alumni of Juilliard, MSM, and Yale. Kaleb Zhu conducts Stravinsky’s Pulcinella Suite, Prokofiev’s Classical Symphony, and Mozart’s Haffner Symphony.",
-  },
 ];
 
 type ModalVariant = "patron" | "preview" | "listening" | null;
@@ -118,15 +118,19 @@ export function MainLanding() {
           <div className="container">
             <h2>Season &amp; Events</h2>
             <p className="lede">
-              <b>Fall 2025-Spring 2026 Season:</b> Thank you for your support in making our inaugural season possible. It was highlighted by our premier 
-              concert in Cary Hall at DiMenna Center for Musical Arts and our premier multimedia collaboration with Jairus Rhoades 
-              at the AFAM Center at Yale University. Please stay tuned by signing up for our newsletter as we prepare to present our
-              second season of many more exciting events!
+              <b>Fall 2026-Spring 2027 Season:</b> Our second season opens with{" "}
+              <b>In Search of Enlightenment</b> on Sunday, November 15 at Cary Hall,
+              DiMenna Center for Classical Music. Tickets are now available on Zeffy, and
+              all proceeds go directly to supporting the Stuyvesant Science Olympiad team.
+              Thank you for making our inaugural season possible — sign up for our
+              newsletter to stay tuned for many more exciting events!
             </p>
             <div className="season-grid">
               {seasonPrograms.map((program, index) => (
                 <article
-                  className={`season-card${index === 0 ? " featured" : index === 1 ? " secondary" : ""}`}
+                  className={`season-card${
+                    index === 0 ? " featured" : index === 1 ? " secondary" : " tertiary"
+                  }`}
                   key={program.title}
                 >
                   <Link href={`/season-events#${program.slug}`} className="season-card-link">
@@ -135,7 +139,20 @@ export function MainLanding() {
                     <p>{program.description}</p>
                   </Link>
                   <div className="season-card-actions">
-                    <Link className="btn primary" href={`/season-events#${program.slug}`}>
+                    {program.ticketsUrl && (
+                      <a
+                        className="btn primary"
+                        href={program.ticketsUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Get Tickets on Zeffy
+                      </a>
+                    )}
+                    <Link
+                      className={`btn ${program.ticketsUrl ? "secondary" : "primary"}`}
+                      href={`/season-events#${program.slug}`}
+                    >
                       View details
                     </Link>
                     {program.livestreamUrl && (
@@ -191,25 +208,6 @@ export function MainLanding() {
                 ))}
               </ul>
             </div> */}
-          </div>
-        </section>
-
-        <section id="news" className="section latest">
-          <div className="container">
-            <div className="latest-header">
-              <p className="latest-eyebrow">Latest News &amp; Calls</p>
-              <h2>Keep pace with Chromas</h2>
-            </div>
-            <div className="latest-grid">
-              {latestNews.map((item) => (
-                <article className="latest-card" key={item.title}>
-                  <p className="latest-card-eyebrow">{item.eyebrow}</p>
-                  <h3>{item.title}</h3>
-                  <p className="latest-card-date">{item.date}</p>
-                  <p>{item.description}</p>
-                </article>
-              ))}
-            </div>
           </div>
         </section>
 

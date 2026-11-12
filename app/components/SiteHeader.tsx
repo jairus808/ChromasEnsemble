@@ -126,9 +126,15 @@ export function SiteHeader() {
           <ul className="nav-overlay-list">
             {navItems.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} onClick={closeNav}>
-                  {item.label}
-                </Link>
+                {item.href.startsWith("mailto:") ? (
+                  <a href={item.href} onClick={closeNav}>
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link href={item.href} onClick={closeNav}>
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
