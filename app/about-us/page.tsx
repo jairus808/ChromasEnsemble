@@ -25,24 +25,30 @@ function getInitials(name: string) {
 const members: Member[] = [
   {
     name: "Pablo Molano",
-    role: "Conductor",
+    role: "Co-founder, Artistic Director",
     bio: "Co-founder and artistic director of Chromas Ensemble.",
+    photo: "/images/pablo_molano.png",
+    photoAlt: "Pablo Molano, co-founder and artistic director of Chromas Ensemble",
     size: "lg",
     align: "start",
     tint: "blue",
   },
   {
     name: "Lucas Amory",
-    role: "Conductor",
+    role: "Musical Director, Conductor",
     bio: "Conducts the Chromas chamber ensemble in Visualizing Temporal Expressivity, a multimedia collaboration at Yale featuring Glass, Dvořák, and Britten.",
+    photo: "/images/lucas_amory.jpg",
+    photoAlt: "Lucas Amory, musical director and conductor of Chromas Ensemble",
     size: "sm",
     align: "end",
     tint: "yellow",
   },
   {
     name: "Jairus Rhoades",
-    role: "Multimedia Collaborator",
-    bio: "Paired live performance with generative visuals for his senior thesis on temporal expressivity, and builds the Chromas website.",
+    role: "Co-founder, Creative Director ",
+    bio: "Paired live performance with generative visuals for his senior thesis on temporal expressivity, manager and creator of Chromas web assets.",
+    photo: "/images/jairus_rhoades.png",
+    photoAlt: "Jairus Rhoades, co-founder and creative director of Chromas Ensemble",
     size: "md",
     align: "center",
     tint: "green",
@@ -104,7 +110,7 @@ export default function AboutUsPage() {
                 attention.
               </p>
               <p>
-                Our programming draws on synesthetic ideas in the spirit of Kandinsky, who
+                Our programming (and logo) draws on synesthetic ideas in the spirit of Kandinsky, who
                 treated color and music as expressions of the same underlying language.
                 Each season, we look for a new way to put that in practice, from live
                 orchestral concerts to real-time generative visuals.
