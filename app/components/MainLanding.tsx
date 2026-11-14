@@ -3,6 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { SiteHeader } from "./SiteHeader";
+import { InstagramReels } from "./InstagramReels";
+
+const instagramReelUrls = [
+  "https://www.instagram.com/reel/DfqXPB0NkAV/",
+  "https://www.instagram.com/reel/DfftfwOvsci/",
+];
 
 type SeasonProgram = {
   title: string;
@@ -174,6 +180,25 @@ export function MainLanding() {
                 View full season details
               </a>
             </div>
+          </div>
+        </section>
+
+        <section className="section reels-showcase" aria-label="Chromas on Instagram">
+          <div className="container">
+            <div className="reels-showcase-header">
+              <p className="latest-eyebrow">From our Instagram</p>
+              <h2>Follow Us on our Socials For The Latest Info!</h2>
+            </div>
+            <InstagramReels reelUrls={instagramReelUrls} />
+            <p className="reels-showcase-follow">
+              <a
+                href="https://www.instagram.com/chromasensemble"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Follow @chromasensemble on Instagram!
+              </a>
+            </p>
           </div>
         </section>
 
@@ -388,7 +413,7 @@ export function MainLanding() {
           <div className="footer-brand">
             <p className="footer-eyebrow">Stay in touch</p>
             <p className="footer-copy">
-              Subscribe for Chromas news, rehearsal invites, and multimedia calls for collaborators.
+              Subscribe for Chromas news, rehearsal invites, and other exciting collabs!
             </p>
             <a
               className="footer-link primary"

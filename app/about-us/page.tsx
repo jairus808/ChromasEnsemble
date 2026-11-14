@@ -39,7 +39,7 @@ const members: Member[] = [
     bio: "Conducts the Chromas chamber ensemble in Visualizing Temporal Expressivity, a multimedia collaboration at Yale featuring Glass, Dvořák, and Britten.",
     photo: "/images/lucas_amory.jpg",
     photoAlt: "Lucas Amory, musical director and conductor of Chromas Ensemble",
-    size: "sm",
+    size: "lg",
     align: "end",
     tint: "yellow",
   },
@@ -49,7 +49,7 @@ const members: Member[] = [
     bio: "Paired live performance with generative visuals for his senior thesis on temporal expressivity, manager and creator of Chromas web assets.",
     photo: "/images/jairus_rhoades.png",
     photoAlt: "Jairus Rhoades, co-founder and creative director of Chromas Ensemble",
-    size: "md",
+    size: "lg",
     align: "center",
     tint: "green",
   },
@@ -131,7 +131,9 @@ export default function AboutUsPage() {
             <div className="bio-masonry">
               {members.map((member, index) => (
                 <article className="bio-card" key={`${member.name}-${index}`}>
-                  <div className={`bio-card-photo-wrap align-${member.align}`}>
+                  <div
+                    className={`bio-card-photo-wrap align-${member.align} tint-${member.tint}`}
+                  >
                     <div
                       className={`bio-card-photo size-${member.size}${
                         member.photo ? "" : ` placeholder tint-${member.tint}`

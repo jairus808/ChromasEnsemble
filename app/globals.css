@@ -1581,6 +1581,183 @@ a:hover {
   max-width: none;
 }
 
+/* ── Benefit / cause callout banner ──────────────────── */
+
+.concert-benefit {
+  margin-top: clamp(48px, 8vh, 80px);
+}
+
+.concert-benefit-inner {
+  background: linear-gradient(
+    135deg,
+    rgba(216, 89, 63, 0.12),
+    rgba(240, 201, 61, 0.16)
+  );
+  border: 1px solid rgba(216, 89, 63, 0.2);
+  border-radius: 32px;
+  padding: clamp(36px, 6vw, 64px);
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  text-align: center;
+}
+
+.concert-benefit-inner h3 {
+  margin: 0;
+  font-family: var(--font-heading, var(--font-grotesk));
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  line-height: 1.15;
+}
+
+.concert-benefit-text {
+  margin: 0;
+  max-width: 760px;
+  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+  line-height: 1.8;
+  color: var(--color-slate);
+}
+
+.concert-benefit-inner .btn {
+  margin-top: 6px;
+}
+
+/* ── Instagram reels strip ───────────────────────────── */
+
+.concert-reels {
+  margin-top: clamp(48px, 8vh, 80px);
+}
+
+.concert-reels-header {
+  text-align: center;
+  display: grid;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.concert-reels-header h3 {
+  margin: 0;
+  font-family: var(--font-heading, var(--font-grotesk));
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+}
+
+.instagram-reels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 380px));
+  justify-content: center;
+  gap: clamp(20px, 3vw, 32px);
+}
+
+.instagram-reel-frame {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(17, 16, 23, 0.12);
+  background: #fff;
+}
+
+.instagram-reel-frame iframe {
+  display: block;
+  width: 100%;
+  height: 640px;
+  border: none;
+}
+
+.concert-reels-follow {
+  margin: 24px 0 0;
+  text-align: center;
+}
+
+.concert-reels-follow a {
+  color: var(--color-lagoon);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.concert-reels-follow a:hover {
+  text-decoration: underline;
+}
+
+/* ── Landing page reels showcase (big, overlapping) ──── */
+
+.reels-showcase {
+  position: relative;
+  z-index: 3;
+  margin-top: calc(-1 * clamp(36px, 6vw, 80px));
+  margin-bottom: calc(-1 * clamp(32px, 5vw, 70px));
+  padding-top: 0;
+  padding-bottom: 0;
+  pointer-events: none;
+}
+
+.reels-showcase .container > * {
+  pointer-events: auto;
+}
+
+.reels-showcase-header {
+  text-align: center;
+  display: grid;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.reels-showcase-header h2 {
+  margin: 0;
+  font-family: var(--font-heading, var(--font-grotesk));
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.reels-showcase .instagram-reels {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 440px));
+  gap: clamp(24px, 4vw, 48px);
+}
+
+.reels-showcase .instagram-reel-frame {
+  border-radius: 20px;
+  box-shadow: 0 32px 64px rgba(10, 12, 22, 0.28);
+}
+
+.reels-showcase .instagram-reel-frame iframe {
+  height: 760px;
+}
+
+.reels-showcase .instagram-reel-frame:nth-child(odd) {
+  transform: rotate(-2deg) translateY(-24px);
+}
+
+.reels-showcase .instagram-reel-frame:nth-child(even) {
+  transform: rotate(2deg) translateY(28px);
+}
+
+.reels-showcase-follow {
+  margin: clamp(48px, 7vw, 72px) 0 0;
+  text-align: center;
+}
+
+.reels-showcase-follow a {
+  color: var(--color-lagoon);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.reels-showcase-follow a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 720px) {
+  .reels-showcase {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .reels-showcase .instagram-reel-frame:nth-child(odd),
+  .reels-showcase .instagram-reel-frame:nth-child(even) {
+    transform: none;
+  }
+
+  .reels-showcase .instagram-reel-frame iframe {
+    height: 640px;
+  }
+}
+
 .concert-photo-full {
   margin-top: clamp(48px, 8vh, 80px);
 }
@@ -1790,6 +1967,18 @@ a:hover {
   z-index: 0;
 }
 
+.bio-card-photo-wrap.tint-blue::before {
+  background: linear-gradient(180deg, #4d87c9, var(--color-lagoon));
+}
+
+.bio-card-photo-wrap.tint-yellow::before {
+  background: linear-gradient(180deg, #fbe27a, var(--color-sun));
+}
+
+.bio-card-photo-wrap.tint-green::before {
+  background: linear-gradient(180deg, #4c8a68, var(--color-forest));
+}
+
 .bio-card-photo-wrap.align-start::before {
   right: 22%;
 }
@@ -1821,7 +2010,7 @@ a:hover {
 }
 
 .bio-card-photo.size-lg {
-  width: 92%;
+  width: 100%;
 }
 
 .bio-card-photo.placeholder {

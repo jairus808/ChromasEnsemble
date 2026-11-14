@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { SiteHeader } from "../components/SiteHeader";
 import { ZeffyEmbed } from "../components/ZeffyEmbed";
+import { InstagramReels } from "../components/InstagramReels";
 
 type SeasonId = "2026-2027" | "2025-2026";
 
@@ -26,6 +27,14 @@ type ConcertInfo = {
   eventbriteUrl?: string;
   /** Zeffy ticketing form path, e.g. "/embed/ticketing/..." */
   zeffyFormPath?: string;
+  /** Large benefit/cause callout rendered below the concert entry */
+  benefit?: {
+    eyebrow: string;
+    heading: string;
+    text: string;
+  };
+  /** Instagram reel permalinks shown below the benefit banner */
+  reelUrls?: string[];
   canvaEmbedUrl?: string;
   canvaViewUrl?: string;
 };
@@ -63,6 +72,15 @@ const concerts: ConcertInfo[] = [
     programNote:
       "These works, each a product of restless curiosity and bold experimentation, embody the enlightenment spirit — and that same spirit inspired us to partner with the Stuyvesant Science Olympiad team for this concert. Just as the composers on this program pushed the boundaries of what music could be, these high-achieving high schoolers are pushing the boundaries of what they can discover. Your support matters: all ticket proceeds go directly to funding their journey to compete in competitions and develop their pre-college careers in STEM. Come for the music, and leave having invested in the next generation of curious minds.",
     zeffyFormPath: "/embed/ticketing/chromas-ensemble-enlightenment-concert",
+    benefit: {
+      eyebrow: "A concert for a cause",
+      heading: "Every ticket funds young scientists",
+      text: "100% of ticket sales from this concert go directly to the Stuyvesant High School Science Olympiad team. Your seat supports a New York public high school's brightest students as they travel to competitions, develop problem-solving skills, and build their pre-college careers in STEM.",
+    },
+    reelUrls: [
+      "https://www.instagram.com/reel/DfqXPB0NkAV/",
+      "https://www.instagram.com/reel/DfftfwOvsci/",
+    ],
     // No canvaEmbedUrl yet — the page shows a "program coming soon" card
     // with links to previous programs until the new program is designed.
   },
@@ -224,6 +242,58 @@ export default function SeasonEventsPage() {
                         </div>
                       )}
                     </div>
+
+                    {concert.benefit && (
+                      <div className="concert-benefit">
+                        <div className="container">
+                          <div className="concert-benefit-inner">
+                            <p className="events-eyebrow">
+                              {concert.benefit.eyebrow}
+                            </p>
+                            <h3>{concert.benefit.heading}</h3>
+                            <p className="concert-benefit-text">
+                              {concert.benefit.text}
+                            </p>
+                            {concert.zeffyFormPath && (
+                              <a
+                                className="btn primary"
+                                href={`https://www.zeffy.com${concert.zeffyFormPath.replace(
+                                  "/embed/",
+                                  "/"
+                                )}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Get Tickets on Zeffy
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {concert.reelUrls && concert.reelUrls.length > 0 && (
+                      <div className="concert-reels">
+                        <div className="container">
+                          <div className="concert-reels-header">
+                            <p className="events-eyebrow">
+                              From our Instagram
+                            </p>
+                            <h3>See Chromas in motion</h3>
+                          </div>
+                          <InstagramReels reelUrls={concert.reelUrls} />
+                          <p className="concert-reels-follow">
+                            <a
+                              href="https://www.instagram.com/chromasensemble"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Follow @chromasensemble on Instagram
+                            </a>
+                          </p>
+                        </div>
+                      </div>
+                    )}
 
                     {concert.zeffyFormPath && (
                       <div className="concert-photo-full">
